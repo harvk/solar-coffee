@@ -13,8 +13,8 @@ namespace SolarCoffee.Web.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
-        public readonly ILogger<ProductController> _logger;
-        public readonly IProductService _productService;
+        private readonly ILogger<ProductController> _logger;
+        private readonly IProductService _productService;
 
         public ProductController(ILogger<ProductController> logger, IProductService productService) {
             _logger = logger;
@@ -31,6 +31,16 @@ namespace SolarCoffee.Web.Controllers
             var productViewModels = products.Select(ProductMapper.SerializeProductViewModel);
 
             return Ok(productViewModels);
+        }
+
+        [HttpPatch("/api/product/{id}")]
+        public ActionResult ArchiveProduct(int id)
+        {
+            _logger.LogInformation("Archiving product");
+
+            var archiveResult = _productService.ArchiveProduct(id);
+
+            return Ok(archiveResult);
         }
     }
 }
