@@ -26,6 +26,11 @@ namespace SolarCoffee.Web.Controllers
         [HttpPost("/api/customer")]
         public ActionResult CreateCustomer([FromBody] CustomerViewModel customer) 
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             _logger.LogInformation("Creating new customer");
 
             customer.CreatedOn = DateTime.UtcNow;

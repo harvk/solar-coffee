@@ -6,7 +6,7 @@
             <ul class="new-product">
                 <li>
                     <label for="is-taxable">Is this product taxable?</label>
-                    <input type="checkbox" id="is-taxable" style="margin-left: 0" v-model="newProduct.isTaxable">
+                    <input type="checkbox" id="is-taxable" v-model="newProduct.isTaxable">
                 </li>
                 <li>
                     <label for="product-name">Name</label>
@@ -58,7 +58,7 @@ export default class NewProductModal extends Vue {
     };
 
     save() {
-        this.$emit("save:produt", this.newProduct);
+        this.$emit("save:product", this.newProduct);
     };
 }
 </script>
@@ -71,6 +71,16 @@ export default class NewProductModal extends Vue {
 
         input {
             width: 100%;
+            height: 1.8rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            line-height: 1.3rem;
+            padding: 0.2rem;
+            color: #555;
+        }
+
+        input[type=checkbox] {
+            width: 5%;
             height: 1.8rem;
             margin-bottom: 1.2rem;
             font-size: 1.1rem;
