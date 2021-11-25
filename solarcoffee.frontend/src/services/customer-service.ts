@@ -6,7 +6,6 @@ import axios from "axios";
  * Customer Service
  * Provides UI business logic associated with customers in our system
  */
-
 export class CustomerService {
     API_URL = process.env.VUE_APP_API_URL;
 

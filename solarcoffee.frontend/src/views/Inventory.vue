@@ -12,24 +12,28 @@
         </div>
 
         <table id="inventory-table" class="table">
-            <tr>
-                <th>Item</th>
-                <th>Quantity On-hand</th>
-                <th>Unit Price</th>
-                <th>Taxable</th>
-                <th>Delete</th>
-            </tr>
-            <tr v-for="item in inventory" :key="item.id">
-                <td>{{ item.product.name }}</td>
-                <td v-bind:class="`${applyColor(item.quantityOnHand, item.idealQuantity)}`">
-                    {{ item.quantityOnHand }}
-                </td>
-                <td>{{ item.product.price | price }}</td>
-                <td>{{ item.product.isTaxable }}</td>
-                <td>
-                    <div class="lni lni-cross-circle product-archive" @click="archiveProduct(item.product.id)"></div>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity On-hand</th>
+                    <th>Unit Price</th>
+                    <th>Taxable</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in inventory" :key="item.id">
+                    <td>{{ item.product.name }}</td>
+                    <td v-bind:class="`${applyColor(item.quantityOnHand, item.idealQuantity)}`">
+                        {{ item.quantityOnHand }}
+                    </td>
+                    <td>{{ item.product.price | price }}</td>
+                    <td>{{ item.product.isTaxable }}</td>
+                    <td>
+                        <div class="lni lni-cross-circle product-archive" @click="archiveProduct(item.product.id)"></div>
+                    </td>
+                </tr>
+            </tbody>
         </table>
 
         <new-product-modal v-if="isNewProductVisible" @save:product="saveNewProduct" @close="closeModal"></new-product-modal>

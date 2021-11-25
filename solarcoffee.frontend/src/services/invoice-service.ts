@@ -1,0 +1,21 @@
+import axios from "axios";
+import { IInvoice } from "@/types/Invoice";
+
+/**
+ * Customer Service
+ * Provides UI business logic associated with customers in our system
+ */
+export class InvoiceService {
+    API_URL = process.env.VUE_APP_API_URL;
+    
+    public async MakeNewInvoice(invoice: IInvoice): Promise<boolean> {
+        let now = new Date();
+
+        invoice.createdOn = now;
+        invoice.updatedOn = now;
+
+        let result: any = await axios.post(`${this.API_URL}/invoice/`, invoice);
+
+        return result.data;
+    }
+}
