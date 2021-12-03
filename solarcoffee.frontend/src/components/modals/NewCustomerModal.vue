@@ -63,6 +63,7 @@ export default class NewCustomerModal extends Vue {
       updatedOn: new Date(),
       firstName: "",
       lastName: "",
+      // @ts-ignore
       primaryAddress: { }
     };
 

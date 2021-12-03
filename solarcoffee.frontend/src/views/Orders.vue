@@ -48,6 +48,7 @@ export default class Orders extends Vue {
 
     getTotal(order: ISalesOrder) {
         return order.salesOrderItems.reduce(
+            // @ts-ignore
             (total, currentItem) => total + (currentItem['product']['price'] * currentItem['quantity']), 0
         );
     }

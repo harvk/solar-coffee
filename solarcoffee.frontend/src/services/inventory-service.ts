@@ -18,4 +18,9 @@ export class InventoryService {
         let result = await axios.patch(`${this.API_URL}/inventory/`, shipment);
         return result.data;
     }
+
+    public async getSnapshotHistory() {
+        let result: any = await axios.get(`${this.API_URL}/inventory/snapshot`);
+        return result.data;
+    }
 }

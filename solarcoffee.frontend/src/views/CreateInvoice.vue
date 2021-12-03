@@ -172,6 +172,7 @@ const invoiceService = new InvoiceService();
 export default class CreateInvoice extends Vue {
     invoiceStep = 1;
     
+    // @ts-ignore
     invoice: IInvoice = {
         createdOn: new Date(),
         updatedOn: new Date(),
@@ -206,6 +207,7 @@ export default class CreateInvoice extends Vue {
 
     get runningTotal() {
         return this.lineItems.reduce(
+            // @ts-ignore
             (total, currentItem) => total + (currentItem['product']['price'] * currentItem['quantity']), 0
         );
     }
@@ -231,6 +233,7 @@ export default class CreateInvoice extends Vue {
     }
 
     startOver(): void {
+        // @ts-ignore
         this.invoice = { lineItems: [] };
         this.invoiceStep = 1;
     }
@@ -242,13 +245,17 @@ export default class CreateInvoice extends Vue {
             quantity: Number(this.newItem.quantity)
         }
 
+        // @ts-ignore
         let existingItems = this.lineItems.map(item => item.product.id);
 
         //line item already exists, increase quantity
+        // @ts-ignore
         if (existingItems.includes(newItem.product.id)) {
             let lineItem = this.lineItems.find(
+                // @ts-ignore
                 item => item.product.id === newItem.product.id
             );
+            // @ts-ignore
             lineItem.quantity = Number(lineItem.quantity) + newItem.quantity;
         } 
         // add new item to list
@@ -266,9 +273,12 @@ export default class CreateInvoice extends Vue {
     downloadPdf() {
         let pdf = new jsPDF("p", "pt", "a4", true);
         let invoice = document.getElementById("invoice");
+        // @ts-ignore
         let width = this.$refs.invoice.clientWidth;
+        // @ts-ignore
         let height = this.$refs.invoice.clientHeight;
 
+        // @ts-ignore
         html2canvas(invoice).then(canvas => {
             let image = canvas.toDataURL("image/jpg");
             pdf.addImage(image, "JPG", 0, 0, width * 0.55, height * 0.55);
@@ -283,12 +293,13 @@ export default class CreateInvoice extends Vue {
     }
 
     async submitInvoice(): Promise<void> {
+        // @ts-ignore
         this.invoice = {
             customerId: this.selectedCustomerId,
             lineItems: this.lineItems
         };
 
-        await invoiceService.MakeNewInvoice(this.invoice);
+        await invoiceService.makeNewInvoice(this.invoice);
         this.downloadPdf();
         await this.$router.push("/orders");
     }
@@ -302,9 +313,9 @@ export default class CreateInvoice extends Vue {
 <style lang="scss" scoped>
     @import "@/scss/global.scss";
 
-    .invoice-step {
+    // .invoice-step {
 
-    }
+    // }
 
     .invoice-step-detail {
         margin: 1.2rem;
