@@ -25,7 +25,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/orders",
-    name: "order",
+    name: "orders",
     component: Orders
   },
   {

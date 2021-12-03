@@ -89,18 +89,18 @@
 
                     <div v-if="lineItems.length" class="invoice-order-list">
                         <div class="invoice-header">
-                            <h3>Invoice: {{ new Date() | humanizeDate }}</h3>
-                            <h3>Customer: {{ selectedCustomer.firstName + " " + selectedCustomer.lastName }}</h3>
-                            <h3>Address: {{ selectedCustomer.primaryAddress.addressLine1 }}</h3>
-                            <h3 v-if="selectedCustomer.primaryAddress.addressLine2">
+                            <h4>Invoice: {{ new Date() | humanizeDate }}</h4>
+                            <h4>Customer: {{ selectedCustomer.firstName + " " + selectedCustomer.lastName }}</h4>
+                            <h4>Address: {{ selectedCustomer.primaryAddress.addressLine1 }}</h4>
+                            <h4 v-if="selectedCustomer.primaryAddress.addressLine2">
                                 {{ selectedCustomer.primaryAddress.addressLine2 }}
-                            </h3>
-                            <h3>
+                            </h4>
+                            <h4>
                                 {{ selectedCustomer.primaryAddress.city }},
                                 {{ selectedCustomer.primaryAddress.state }}
                                 {{ selectedCustomer.primaryAddress.postalCode }}
-                            </h3>
-                            <h3>{{ selectedCustomer.primaryAddress.country }}</h3>
+                            </h4>
+                            <h4>{{ selectedCustomer.primaryAddress.country }}</h4>
                         </div>
 
                         <table class="table">
@@ -284,7 +284,7 @@ export default class CreateInvoice extends Vue {
 
     async submitInvoice(): Promise<void> {
         this.invoice = {
-            customer: this.selectedCustomerId,
+            customerId: this.selectedCustomerId,
             lineItems: this.lineItems
         };
 
